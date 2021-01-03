@@ -1,69 +1,56 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 
-import Search from './components/Search';
-import Results from './components/Results'
-import Popup from './components/Popup';
+import Search from './Components/Search';
+import Results from './Components/Results';
+import Popup from './Components/Popup';
 
 function App() {
-  // handleInput = handleInput.bind(this);  //Writing this or not dosen't change anything
-  const [state, setState] = useState({
-    s: "",
-    results: [],
-    selected: {},
-  })
-  const apiurl = 'http://www.omdbapi.com/?apikey=ad5bdfd0';
-  const search = (e) => {
+  // State Variables
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+  const [selected, setSelected] = useState({});
+
+  const apiurl = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`;
+  const search = async (e) => {
     if (e.key === 'Enter') {
-      Axios(apiurl + '&s=' + state.s)
-      .then(({ data }) => {
-        console.log(data)
+      try {
+        const { data } = await Axios(apiurl + '&s=' + query);
+        console.log(data);
         let results = data.Search;
-        setState(prevState => {
-          return { ...prevState, results }
-        })
-      })
-      .catch(e => {
-        console.log(e)
-      })
-      
+        setResults(results);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
+  };
 
-  function handleInput(e) {  //Works even without arrow function declaration
-    let s = e.target.value; //User's search value
-    setState(prevState => {
-      return {...prevState, s}
-    });
-  }
-
-  const openPopup = id => {
-    Axios(apiurl + '&i=' + id)
-    .then(({data}) => {
+  const openPopup = async (id) => {
+    try {
+      const { data } = await Axios(apiurl + '&i=' + id);
       let result = data;
       console.log(data);
-      setState(prevState => {
-        return {...prevState, selected: result}
-      })
-    })
-  }
-
-  const closePopup = () => {
-    setState(prevState => {
-      return {...prevState, selected: {}}
-    })
-  }
+      setSelected(result);  
+    } catch (error) {
+      console.log(error);
+    }
+    
+  };
 
   return (
     <div className="App">
       <header>
-        <h1>Movie Database</h1>
+        <h1>The Shoppies</h1>
       </header>
       <main>
-        <Search onInput={handleInput} search={search} />
-        <Results results={state.results} openPopup={openPopup} />
-      
-        {(typeof state.selected.Title != "undefined") ? <Popup selected={state.selected} closePopup={closePopup} /> : false}
+        <Search onInput={(e) => setQuery(e.target.value)} search={search} />
+        <Results results={results} openPopup={openPopup} />
+
+        {typeof selected.Title != 'undefined' ? (
+          <Popup selected={selected} closePopup={() => setSelected({})} />
+        ) : (
+          false
+        )}
       </main>
     </div>
   );
