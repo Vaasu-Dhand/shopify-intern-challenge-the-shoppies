@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import { Segment } from 'semantic-ui-react'
 
-import Search from './Components/Search';
-import Results from './Components/Results';
-import Popup from './Components/Popup';
-import Modal from './Components/Modal'
+import { Search, Results, Popup, Modal } from './Components';
 
 function App() {
   // State Variables
