@@ -1,0 +1,23 @@
+/* * This file Overrides Semantic UI React */
+
+.segment {
+  position: fixed !important;
+  border-radius: 0 !important;
+  bottom: 0 !important;
+  width: 100%;
+}
+
+div.item {
+  line-height: 36px !important;
+}
+
+div.item .button {
+  float: right;
+  background-color: white;
+}
+
+@media only screen and (max-width: 350px) {
+  div.item {
+    line-height: 16px !important;
+  }
+}
