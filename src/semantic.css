@@ -16,6 +16,9 @@ div.item .button {
   background-color: white;
 }
 
+.nominees-count {
+} 
+
 @media only screen and (max-width: 350px) {
   div.item {
     line-height: 16px !important;

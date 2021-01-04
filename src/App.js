@@ -9,6 +9,8 @@ function App() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [selected, setSelected] = useState({});
+  const nominees = Object.keys(JSON.parse(localStorage.getItem('nominations'))).length;
+  
 
   const apiurl = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`;
   const search = async (e) => {
@@ -33,7 +35,6 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-    
   };
 
   return (
