@@ -1,180 +1,198 @@
 :root {
-	--red: #E50914;
-	--dark-red: #B81D24;
-	--black: #221F1F;
-	--white: #F5F5F1;
+  --red: #e50914;
+  --dark-red: #b81d24;
+  --black: #221f1f;
+  --white: #f5f5f1;
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-	font-family: 'ubuntu', sans-serif;
-	background-color: rgb(26, 85, 153);
-	/* color: var(--white); */
+  font-family: 'ubuntu', sans-serif;
+  background-color: rgb(26, 85, 153);
+  /* color: var(--white); */
 }
 
 header {
-	padding: 50px 15px 0px;
+  padding: 50px 15px 0px;
 }
 
 header h1 {
-	color: #FFF;
-	font-size: 48px;
-	font-weight: 500;
-	text-align: center;
+  color: #fff;
+  font-size: 48px;
+  font-weight: 500;
+  text-align: center;
 }
 
 main {
-	width: 100%;
-	max-width: 960px;
-	margin: 0 auto;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 section {
-	padding: 15px;
+  padding: 15px;
 }
 
 .searchbox {
-	display: block;
-	width: 100%;
-	padding: 15px;
+  display: block;
+  width: 100%;
+  padding: 15px;
 
-	border: none;
-	outline: none;
-	background: none;
+  border: none;
+  outline: none;
+  background: none;
 
-	background-color: #EEE;
-	border-radius: 8px;
+  background-color: #eee;
+  border-radius: 8px;
 
-	color: #53565A;
-	font-size: 20px;
-	font-weight: 300;
+  color: #53565a;
+  font-size: 20px;
+  font-weight: 300;
 
-	transition: 0.4s ease-out;
+  transition: 0.4s ease-out;
 }
 
 .searchbox:focus {
-	box-shadow: 0px 0px 8px 3px #4484C4;
+  box-shadow: 0px 0px 8px 3px #4484c4;
 }
 
 .results {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin: 0 -15px;
-	padding-bottom: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 -15px;
+  padding-bottom: 80px;
 }
 
 .results .result {
-	width: 33.333%;
-	min-width: 250px;
-	padding: 15px;
-	display: flex;
-	flex-direction: column;
-	cursor: pointer;
+  width: 33.333%;
+  min-width: 250px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 }
 
 .results .result img {
-	display: block;
-	width: 100%;
+  display: block;
+  width: 100%;
 }
 
 .results .result h3 {
-	color: #FFF;
-	font-size: 20px;
-	font-weight: 600;
-	background: #445565;
-	flex: 1 1 100%;
-	transition: 0.4s ease-out;
-	margin: 0;
-	text-align: center;
-	padding: 10px 0px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  background: #445565;
+  flex: 1 1 100%;
+  transition: 0.4s ease-out;
+  margin: 0;
+  text-align: center;
+  padding: 10px 0px;
 }
 
 .results .result:hover h3 {
-	background: #FFF;
-	color: #223343;
-	padding: 15px 0px;
+  background: #fff;
+  color: #223343;
+  padding: 15px 0px;
 }
 
 .results .result button.button {
-	min-height: 36px;
-	border-radius: 0;
-	width: 100%;
+  min-height: 36px;
+  border-radius: 0;
+  width: 100%;
 }
 
 .popup {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background-color: #445565;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #445565;
 
-	overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 .popup .content {
-	display: block;
-	width: 100%;
-	max-width: 960px;
-	margin: 0 auto;
-	padding: 25px;
+  display: block;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 25px;
 
-	color: #FFF;
+  color: #fff;
 }
 
 .popup .content h2 {
-	font-size: 28px;
-	font-weight: 600;
+  font-size: 28px;
+  font-weight: 600;
 }
 .popup .content h2 span {
-	font-weight: 300;
-	font-size: 20px;
+  font-weight: 300;
+  font-size: 20px;
 }
 
 .popup .content .rating {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .popup .content .plot {
-	display: flex;
-	flex-wrap: wrap;
-	margin: 0px -15px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px -15px 30px;
 }
 
 .popup .content .plot img {
-	flex: 1 1 50%;
-	max-width: 300px;
-	padding: 0px 15px;
+  flex: 1 1 50%;
+  max-width: 300px;
+  padding: 0px 15px;
 }
 
 .popup .content .plot p {
-	flex: 1 1 50%;
-	padding: 15px;
+  flex: 1 1 50%;
+  padding: 15px;
 }
 
 .popup .content .close {
-	display: inline-block;
-	padding: 15px 30px;
-	font-size: 18px;
-	font-weight: 700;
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: 700;
 
-	background: #4484C4;
-	color: #FFF;
-	border-radius: 8px;
-	border: none;
-	outline: none;
-	appearance: none;
-	cursor: pointer;
+  background: #4484c4;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
 
-	transition: 0.4s ease-out;
+  transition: 0.4s ease-out;
 }
 
 .popup .content .close:hover {
-	background: #223343;
+  background: #223343;
+}
+
+h1.no-movies-found {
+  width: 448px;
+  height: 79px;
+  left: 65px;
+  top: 115px;
+
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 55px;
+  text-align: center;
+
+  color: #ffffff;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
