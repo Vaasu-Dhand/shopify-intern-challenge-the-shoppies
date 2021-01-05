@@ -1,38 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button } from 'semantic-ui-react';
 
-const Result = ({ result, openPopup, nominatedTitles}) => {
+import { NomineeContext } from '../NomineeContext';
 
-  // ! Deleting Nomination from Modal does not change the Nominated Button in Result
+const Result = ({ result, openPopup, nominees }) => {
+
   const [nominated, setNominated] = useState(false);
 
-  // Synchronises The nominated state varibale with localStorage
+  const { addNominee, removeNominee } = useContext(NomineeContext);
+
+  // * Check's if the current title is nominated and updates the state accordingly 
   useEffect(() => {
-    const titles = JSON.parse(localStorage.getItem('nominations'))
-    console.log("Use Effect Triggered because Nominated List Updated");
-    for (const title in titles) {
-      (result.imdbID === title) ? setNominated(true) : setNominated(false)
-    }
-  }, [result.imdbID, nominatedTitles])
+    result.imdbID in nominees ? setNominated(true) : setNominated(false);
+  }, [nominees, result]);
 
   const handleClick = (title) => {
-    setNominated(!nominated);
 
-    // * New Title Nominated -> Add it to Local Storage
-    if (!nominated) {  
-      console.log("I have just been nominated", title.imdbID);
-      
-      let nominatedTitles = JSON.parse(localStorage.getItem('nominations'));
-      nominatedTitles = { ...nominatedTitles, [title.imdbID]: title };
-      localStorage.setItem('nominations', JSON.stringify(nominatedTitles));
-    } else {  // * Already Nominated Title -> Remove from Local Storage  
-      console.log("I am No more nominated", title.imdbID);
-
-      let nominatedTitles = JSON.parse(localStorage.getItem('nominations'));
-      delete nominatedTitles[title.imdbID]
-      localStorage.setItem('nominations', JSON.stringify(nominatedTitles));
+    // New Title Nominated -> Add it to Local Storage
+    if (!nominated) {
+      setNominated(true);
+      addNominee(title);
+    } else {
+      // Already Nominated Title -> Remove from Local Storage
+      setNominated(false);
+      removeNominee(title.imdbID);
     }
-    
   };
 
   return (

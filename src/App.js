@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
-import { Segment } from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react';
 
 import { Search, Results, Popup, Modal } from './Components';
+import { NomineeProvier } from './NomineeContext';
 
 function App() {
   // State Variables
@@ -15,11 +16,13 @@ function App() {
     if (e.key === 'Enter') {
       try {
         const { data } = await Axios(apiurl + '&s=' + query);
-        if (data.Response === "True") { // Results Found
+        if (data.Response === 'True') {
+          // Results Found
           let results = data.Search;
           setResults(results);
-        } else {  // No Results Found
-          setResults(null)
+        } else {
+          // No Results Found
+          setResults(null);
         }
       } catch (error) {
         console.log(error);
@@ -32,7 +35,7 @@ function App() {
       const { data } = await Axios(apiurl + '&i=' + id);
       let result = data;
       console.log(data);
-      setSelected(result);  
+      setSelected(result);
     } catch (error) {
       console.log(error);
     }
@@ -40,21 +43,32 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <h1>The Shoppies</h1>
-        <Modal />
-      </header>
-      <main>
-        <Search onInput={(e) => setQuery(e.target.value)} search={search} />
-        <Results results={results} openPopup={openPopup} />
+      <NomineeProvier>
+        <header>
+          <h1>The Shoppies</h1>
+          <Modal />
+        </header>
+        <main>
+          <Search onInput={(e) => setQuery(e.target.value)} search={search} />
+          <Results results={results} openPopup={openPopup} />
 
-        {typeof selected.Title != 'undefined' ? (
-          <Popup selected={selected} closePopup={() => setSelected({})} />
-        ) : (
-          false
-        )}
-      </main>
-      <Segment raised padded textAlign='center' size='large'><a href="https://www.linkedin.com/in/vaasu-dhand-520747191/" target="_blank" rel="noopener noreferrer">Vaasu Dhand's</a> Entry for Shopify Front End Dev Challenge</Segment>
+          {typeof selected.Title != 'undefined' ? (
+            <Popup selected={selected} closePopup={() => setSelected({})} />
+          ) : (
+            false
+          )}
+        </main>
+      </NomineeProvier>
+      <Segment raised padded textAlign="center" size="large">
+        <a
+          href="https://www.linkedin.com/in/vaasu-dhand-520747191/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Vaasu Dhand's 
+        </a> {' '}
+        Entry for Shopify Front End Dev Challenge
+      </Segment>
     </div>
   );
 }

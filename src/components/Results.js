@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import Result from './Result';
 import NoData from '../notFound';
+import { NomineeContext } from '../NomineeContext'
 
 const Results = ({ results, openPopup }) => {
-  console.log(results);
 
-  let nominatedTitles = JSON.parse(localStorage.getItem('nominations'));
+  const { nominees } = useContext(NomineeContext)
+
   return (
     <section className="results">
       {results ? (
@@ -14,7 +16,7 @@ const Results = ({ results, openPopup }) => {
             result={result}
             key={result.imdbID}
             openPopup={openPopup}
-            nominatedTitles={nominatedTitles}
+            nominees={nominees}
           />
         ))
       ) : (

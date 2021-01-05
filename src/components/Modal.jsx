@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Icon,
   List,
@@ -9,19 +9,18 @@ import {
   Menu,
 } from 'semantic-ui-react';
 
+import { NomineeContext } from '../NomineeContext'
+
 export default function Modal() {
+
+  const { nominees, removeNominee } = useContext(NomineeContext)
+
   // State Variables
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
 
-  let nominatedTitles = JSON.parse(localStorage.getItem('nominations'));
-
   const handleClick = (titleID) => {
-    console.log(titleID, 'was removed');
-    // Delete Title from LocalStorage
-    let nominatedTitles = JSON.parse(localStorage.getItem('nominations'));
-    delete nominatedTitles[titleID];
-    localStorage.setItem('nominations', JSON.stringify(nominatedTitles));
+    removeNominee(titleID)
     setVisible(!visible);
   };
 
@@ -31,24 +30,22 @@ export default function Modal() {
         <Menu.Item as="a">
           <Icon name="chess queen" /> Nominations
           <Label color="black" floating>
-            {Object.keys(nominatedTitles).length}
+            {Object.keys(nominees).length}
           </Label>
         </Menu.Item>
       </Menu>
-
-      {/* <Button onClick={() => setOpen(true)}>View Nominations</Button> */}
 
       <ModalComponent open={open} onClose={() => setOpen(false)}>
         <ModalComponent.Header>Nominations</ModalComponent.Header>
         <ModalComponent.Content>
           <List bulleted>
             <Transition.Group duration={200}>
-              {Object.keys(nominatedTitles).map((title) => (
-                <List.Item key={nominatedTitles[title].imdbID}>
-                  {nominatedTitles[title].Title} ({nominatedTitles[title].Year})
+              {Object.keys(nominees).map((title) => (
+                <List.Item key={nominees[title].imdbID}>
+                  {nominees[title].Title} ({nominees[title].Year})
                   <Button
                     animated="vertical"
-                    onClick={() => handleClick(nominatedTitles[title].imdbID)}
+                    onClick={() => handleClick(nominees[title].imdbID)}
                   >
                     <Button.Content hidden>Delete</Button.Content>
                     <Button.Content visible>
