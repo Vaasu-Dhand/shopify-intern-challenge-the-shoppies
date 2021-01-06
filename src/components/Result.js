@@ -1,21 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Button } from 'semantic-ui-react';
-
 import { NomineeContext } from '../NomineeContext';
+import Fade from 'react-reveal/Fade';
 
 const Result = ({ result, openPopup, nominees }) => {
-
   const [nominated, setNominated] = useState(false);
 
   const { addNominee, removeNominee } = useContext(NomineeContext);
 
-  // * Check's if the current title is nominated and updates the state accordingly 
+  // * Check's if the current title is nominated and updates the state accordingly
   useEffect(() => {
     result.imdbID in nominees ? setNominated(true) : setNominated(false);
   }, [nominees, result]);
 
   const handleClick = (title) => {
-
     // New Title Nominated -> Add it to Local Storage
     if (!nominated) {
       setNominated(true);
@@ -28,19 +26,21 @@ const Result = ({ result, openPopup, nominees }) => {
   };
 
   return (
-    <div className="result">
-      <div onClick={() => openPopup(result.imdbID)}>
-        <img src={result.Poster} alt="" />
-        <h3>{result.Title}</h3>
+    <Fade bottom>
+      <div className="result">
+        <div onClick={() => openPopup(result.imdbID)}>
+          <img src={result.Poster} alt="" />
+          <h3>{result.Title}</h3>
+        </div>
+        <Button
+          color={nominated ? 'twitter' : 'black'}
+          // color={nominated ? 'basic' : 'secondary'}
+          content={nominated ? 'Nominated' : 'Nominate'}
+          icon="heart"
+          onClick={() => handleClick(result)}
+        />
       </div>
-      <Button
-        color={nominated ? 'twitter' : 'black'}
-        // color={nominated ? 'basic' : 'secondary'}
-        content={nominated ? 'Nominated' : 'Nominate'}
-        icon="heart"
-        onClick={() => handleClick(result)}
-      />
-    </div>
+    </Fade>
   );
 };
 

@@ -18,6 +18,7 @@ const Results = ({ results, openPopup }) => {
             openPopup={openPopup}
             nominees={nominees}
           />
+
         ))
       ) : (
         <NoData />
