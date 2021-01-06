@@ -34,8 +34,9 @@ const Result = ({ result, openPopup, nominees }) => {
         <h3>{result.Title}</h3>
       </div>
       <Button
-        color={nominated ? 'green' : 'red'}
-        content={nominated ? 'NOMINATED' : 'Nominate'}
+        color={nominated ? 'twitter' : 'black'}
+        // color={nominated ? 'basic' : 'secondary'}
+        content={nominated ? 'Nominated' : 'Nominate'}
         icon="heart"
         onClick={() => handleClick(result)}
       />

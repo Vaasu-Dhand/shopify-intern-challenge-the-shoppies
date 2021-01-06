@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap');
 
-:root {
-  --red: #e50914;
-  --dark-red: #b81d24;
-  --black: #221f1f;
-  --white: #f5f5f1;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -14,13 +7,10 @@
 }
 
 body {
+  /* CSS Background does not stretch over the whole height */
+  /* background: linear-gradient(rgba(26, 85, 153, 0.5), rgba(26, 85, 153, 1)) no-repeat fixed; */
+  background: url('./Images/Desktop.png');
   font-family: 'ubuntu', sans-serif;
-  background-color: rgba(26, 85, 153, 0.9);
-
-}
-
-.app {
-  background: url('./Images/background1.jpg');
 }
 
 header {
@@ -47,6 +37,10 @@ main {
 
 section {
   padding: 15px;
+}
+
+section.searchbox-wrap {
+  margin-top: 15px;
 }
 
 .searchbox {
@@ -126,7 +120,7 @@ section {
   height: 100vh;
   background-color: #445565;
   /* Always Above the More Info Popup  */
-  z-index: 101; 
+  z-index: 101;
   overflow-y: scroll;
 }
 

@@ -61,7 +61,7 @@ export default function Modal() {
           )}
         </ModalComponent.Content>
         <ModalComponent.Actions>
-          <Button negative onClick={() => setOpen(false)}>
+          <Button secondary onClick={() => setOpen(false)}>
             Close
           </Button>
         </ModalComponent.Actions>

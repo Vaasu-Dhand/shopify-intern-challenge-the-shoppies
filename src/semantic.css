@@ -5,6 +5,7 @@
   border-radius: 0 !important;
   bottom: 0 !important;
   width: 100%;
+  /* z-index: 2; */
 }
 
 div.item {
@@ -16,8 +17,9 @@ div.item .button {
   background-color: white;
 }
 
-.nominees-count {
-} 
+button.ui.animated.button {
+  z-index: 0 !important;
+}
 
 @media only screen and (max-width: 350px) {
   div.item {
