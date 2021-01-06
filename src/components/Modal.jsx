@@ -9,7 +9,7 @@ import {
   Menu,
 } from 'semantic-ui-react';
 
-import { NomineeContext } from '../NomineeContext';
+import { NomineeContext } from '../Utilities/NomineeContext';
 
 export default function Modal() {
   const { nominees, removeNominee } = useContext(NomineeContext);
@@ -25,19 +25,24 @@ export default function Modal() {
 
   return (
     <>
-      <Menu compact onClick={() => setOpen(true)} className="nominees-count" size="large">
+      <Menu
+        compact
+        onClick={() => setOpen(true)}
+        className="nominees-count"
+        size="large"
+      >
         <Menu.Item as="a">
           <Icon name="chess queen" /> Nominations
           <Label color="black" floating>
-            {Object.keys(nominees).length}
+            {nominees ? Object.keys(nominees).length : '0'}
           </Label>
         </Menu.Item>
       </Menu>
-
+      
       <ModalComponent open={open} onClose={() => setOpen(false)}>
         <ModalComponent.Header>Nominations</ModalComponent.Header>
         <ModalComponent.Content>
-          {Object.keys(nominees).length !== 0 ? ( // Check if there are any Nominees
+          {nominees !== null && Object.keys(nominees).length !== 0 ? ( // Check if there are any Nominees
             <List bulleted>
               <Transition.Group duration={200}>
                 {Object.keys(nominees).map((title) => (
@@ -57,7 +62,7 @@ export default function Modal() {
               </Transition.Group>
             </List>
           ) : (
-            <div style={{textAlign: 'center'}}>No Nominees</div>
+            <div style={{ textAlign: 'center' }}>No Nominees</div>
           )}
         </ModalComponent.Content>
         <ModalComponent.Actions>

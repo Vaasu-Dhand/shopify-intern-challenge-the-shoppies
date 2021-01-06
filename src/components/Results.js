@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 
 import Result from './Result';
-import NoData from '../notFound';
-import { NomineeContext } from '../NomineeContext'
+import NoData from '../Utilities/notFound';
+import { NomineeContext } from '../Utilities/NomineeContext';
 
 const Results = ({ results, openPopup }) => {
-
-  const { nominees } = useContext(NomineeContext)
+  const { nominees } = useContext(NomineeContext);
 
   return (
     <section className="results">
@@ -18,7 +17,6 @@ const Results = ({ results, openPopup }) => {
             openPopup={openPopup}
             nominees={nominees}
           />
-
         ))
       ) : (
         <NoData />

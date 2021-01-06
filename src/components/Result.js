@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
+
 import { Button } from 'semantic-ui-react';
-import { NomineeContext } from '../NomineeContext';
-import Fade from 'react-reveal/Fade';
+import { NomineeContext } from '../Utilities/NomineeContext';
+import useFadeUp from '../Utilities/useFadeUp';
 
 const Result = ({ result, openPopup, nominees }) => {
   const [nominated, setNominated] = useState(false);
@@ -10,7 +11,13 @@ const Result = ({ result, openPopup, nominees }) => {
 
   // * Check's if the current title is nominated and updates the state accordingly
   useEffect(() => {
-    result.imdbID in nominees ? setNominated(true) : setNominated(false);
+    if (nominees === null) {
+      // If there no Nominess
+      setNominated(false);
+    } else {
+      // If there are Nominess, search through them
+      result.imdbID in nominees ? setNominated(true) : setNominated(false);
+    }
   }, [nominees, result]);
 
   const handleClick = (title) => {
@@ -25,22 +32,22 @@ const Result = ({ result, openPopup, nominees }) => {
     }
   };
 
+  // FadeUp Animation Hook
+  useFadeUp();
+
   return (
-    <Fade bottom>
-      <div className="result">
-        <div onClick={() => openPopup(result.imdbID)}>
-          <img src={result.Poster} alt="" />
-          <h3>{result.Title}</h3>
-        </div>
-        <Button
-          color={nominated ? 'twitter' : 'black'}
-          // color={nominated ? 'basic' : 'secondary'}
-          content={nominated ? 'Nominated' : 'Nominate'}
-          icon="heart"
-          onClick={() => handleClick(result)}
-        />
+    <div className="result fadeup section">
+      <div onClick={() => openPopup(result.imdbID)}>
+        <img src={result.Poster} alt="" />
+        <h3>{result.Title}</h3>
       </div>
-    </Fade>
+      <Button
+        color={nominated ? 'blue' : 'black'}
+        content={nominated ? 'Nominated' : 'Nominate'}
+        icon="heart"
+        onClick={() => handleClick(result)}
+      />
+    </div>
   );
 };
 

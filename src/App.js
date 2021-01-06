@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { Segment } from 'semantic-ui-react';
 
 import { Search, Results, Popup, Modal } from './Components';
-import { NomineeProvier } from './NomineeContext';
+import { NomineeProvier } from './Utilities/NomineeContext';
 
 function App() {
   // State Variables
@@ -34,7 +34,6 @@ function App() {
     try {
       const { data } = await Axios(apiurl + '&i=' + id);
       let result = data;
-      console.log(data);
       setSelected(result);
     } catch (error) {
       console.log(error);
@@ -45,7 +44,7 @@ function App() {
     <div className="App">
       <NomineeProvier>
         <header>
-          <h1>The Shoppies</h1>
+          <h1 onClick={() => window.location.reload()}>The Shoppies</h1>
           <Modal />
         </header>
         <main>
