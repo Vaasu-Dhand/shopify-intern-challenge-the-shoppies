@@ -1,3 +1,6 @@
+# The Shoppies
+Live - [the-shoppies-vd](https://the-shoppies-vd.netlify.app/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
