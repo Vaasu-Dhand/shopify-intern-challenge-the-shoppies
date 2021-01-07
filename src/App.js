@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import { Segment } from 'semantic-ui-react';
 
-import { Search, Results, Popup, Modal } from './Components/';
+import { Search, Results, Popup, Modal } from './Components/index';
 import { NomineeProvier } from './Utilities/NomineeContext';
 
 function App() {
